@@ -39,4 +39,6 @@ Para ejecutar las pruebas en la carpeta raiz donde se encuentren los archivos js
 
 #### newman run  PFM_Collection.postman_collection.json -e PFM_Environmet.postman_environment.json -r htmlextra --reporter-htmlextra-title "Informe de prueba PFM no OBI"
 
+Esto generara una carpeta llamada "newman" adentro podremos visualizar el reporte generado en HTML.
+
 Gracias por tu tiempo.
