@@ -2488,8 +2488,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "{{IdAccount}}",
-									"description": "(Required) The ID of the account to request."
+									"value": "{{IdAccount}}"
 								}
 							]
 						},
@@ -4112,7 +4111,212 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"accountId\": {{IdAccount}},\n    \"date\": {{$timestamp}},\n    \"charge\": true,\n    \"description\": \"SPEI TT SALIDA SCOMISIN PAGO CEL RECEPTOR BANREGIO\",\n    \"amount\": 1410,\n    \"categoryId\": null\n}"
+							"raw": "{\n    \"accountId\": {{IdAccount}},\n    \"date\": \"{{$timestamp}}000\",\n    \"charge\": true,\n    \"description\": \"SPEI TT SALIDA SCOMISIN PAGO CEL RECEPTOR BANREGIO\",\n    \"amount\": 1410,\n    \"categoryId\": 100010004\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transactions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transactions"
+							]
+						},
+						"description": "Creates a transaction. A previosuly created account is required."
+					},
+					"response": [
+						{
+							"name": "A transaction created.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountId\": 123,\n    \"date\": 1587567125458,\n    \"charge\": true,\n    \"description\": \"UBER EATS\",\n    \"amount\": 1234.56,\n    \"categoryId\": 123\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transactions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transactions"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"id\": 123,\n \"date\": 1587567125458,\n \"charge\": true,\n \"description\": \"UBER EATS\",\n \"amount\": 1234.56,\n \"categoryId\": 123,\n \"dateCreated\": 1587567125458,\n \"lastUpdated\": 1587567125458\n}"
+						},
+						{
+							"name": "Something in the request was wrong.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountId\": 123,\n    \"date\": 1587567125458,\n    \"charge\": true,\n    \"description\": \"UBER EATS\",\n    \"amount\": 1234.56,\n    \"categoryId\": 123\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transactions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transactions"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n },\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n }\n]"
+						},
+						{
+							"name": "Some ID you requested was not found.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountId\": 123,\n    \"date\": 1587567125458,\n    \"charge\": true,\n    \"description\": \"UBER EATS\",\n    \"amount\": 1234.56,\n    \"categoryId\": 123\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transactions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transactions"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n },\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n }\n]"
+						},
+						{
+							"name": "Something in the server was wrong.",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accountId\": 123,\n    \"date\": 1587567125458,\n    \"charge\": true,\n    \"description\": \"UBER EATS\",\n    \"amount\": 1234.56,\n    \"categoryId\": 123\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/transactions",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transactions"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "PFM transactions | 200 | POST | transactions - create transacctions incomes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Case 200  create transacctions\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+									"});",
+									"",
+									"// Save created transaction",
+									"if(pm.response.code===200){",
+									"    var transaction = pm.response.json();",
+									"    pm.environment.set('IdTransaction', transaction.id);",
+									"};"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accountId\": {{IdAccount}},\n    \"date\": \"{{$timestamp}}000\",\n    \"charge\": false,\n    \"description\": \"SPEI TT Entrada SCOMISIN PAGO CEL RECEPTOR BANREGIO\",\n    \"amount\": 1410,\n    \"categoryId\": 100010004\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/transactions",
@@ -5011,7 +5215,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"accountId\": {{IdAccount}},\n    \"date\": {{$timestamp}},\n    \"charge\": {{$randomBoolean}},\n    \"description\": \"{{$randomTransactionType}}\",\n    \"amount\": {{$randomPrice}},\n    \"categoryId\": null\n}"
+							"raw": "{\n    \"accountId\": {{IdAccount}},\n    \"date\": \"{{$timestamp}}000\",\n    \"charge\": {{$randomBoolean}},\n    \"description\": \"{{$randomTransactionType}}\",\n    \"amount\": {{$randomPrice}},\n    \"categoryId\": 100010004\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/transactions/:id",
@@ -5249,7 +5453,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": {{IdUser}},\n    \"categoryId\": {{parentcategoryIdstatic}},\n    \"name\": \"{{$randomFullName}}\",\n    \"amount\": 100,\n    \"warningPercentage\": 1\n}"
+							"raw": "{\n    \"userId\": {{IdUser}},\n    \"categoryId\": 100010003,\n    \"name\": \"{{$randomFullName}}\",\n    \"amount\": 100,\n    \"warningPercentage\": 1\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/budgets",
@@ -5912,7 +6116,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"userId\": {{IdUser}},\n    \"categoryId\": {{parentcategoryIdstatic}},\n    \"name\": \"{{$randomDepartment}}\",\n    \"amount\":  {{$randomPrice}},\n    \"warningPercentage\": 0.7\n}"
+							"raw": "{\n    \"userId\": {{IdUser}},\n    \"categoryId\": 100010004,\n    \"name\": \"{{$randomDepartment}}\",\n    \"amount\":  {{$randomPrice}},\n    \"warningPercentage\": 0.7\n}"
 						},
 						"url": {
 							"raw": "{{baseUrl}}/budgets/:id",
@@ -6533,7 +6737,7 @@
 									"\r",
 									"if (Array.isArray(jsonData.data) && jsonData.data.length > 0) {\r",
 									"    pm.test(\"El campo 'data' no está vacío\", function () {\r",
-									"        pm.expect(jsonData.jsonData).to.not.be.empty;\r",
+									"        pm.expect(jsonData.data).to.not.be.empty;\r",
 									"    });\r",
 									"} else {\r",
 									"    pm.test(\"El campo 'data' debe ser un array no vacío\", function () {\r",
@@ -6799,6 +7003,420 @@
 					]
 				},
 				{
+					"name": "PFM transacctions | 204 | delete | transacctions - Deletes a transaction.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Case 204 delete transaction create accros test\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([204]);",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/transactions/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transactions",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{IdTransaction}}",
+									"description": "(Required) The ID of the transaction to request."
+								}
+							]
+						},
+						"description": "Deletes a transaction and all its information."
+					},
+					"response": [
+						{
+							"name": "The transaction has been deleted successfully.",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/transactions/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transactions",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Something in the request was wrong.",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/transactions/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transactions",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n },\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n }\n]"
+						},
+						{
+							"name": "The transaction ID you requested was not found.",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/transactions/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transactions",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n },\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n }\n]"
+						},
+						{
+							"name": "Something in the server was wrong.",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/transactions/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"transactions",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "PFM budgets | 204 | Delete | budget - Deletes a budget.",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Case 204\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([204]);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AccessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/budgets/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"budgets",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "{{IdBudget}}",
+									"description": "(Required) The ID of the budget to request."
+								}
+							]
+						},
+						"description": "Deletes a budget and all its information."
+					},
+					"response": [
+						{
+							"name": "The budget has been deleted successfully.",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/budgets/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"budgets",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Something in the request was wrong.",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/budgets/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"budgets",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n },\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n }\n]"
+						},
+						{
+							"name": "The budget ID you requested was not found.",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/budgets/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"budgets",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n },\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n }\n]"
+						},
+						{
+							"name": "Something in the server was wrong.",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: bearer",
+										"key": "Authorization",
+										"value": "Bearer <token>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/budgets/:id",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"budgets",
+										":id"
+									],
+									"variable": [
+										{
+											"key": "id"
+										}
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
 					"name": "PFM accounts | 204 | Delete | account - Deletes an account.",
 					"event": [
 						{
@@ -6839,7 +7457,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "44",
+									"value": "{{IdAccount}}",
 									"description": "(Required) The ID of the account to request."
 								}
 							]
@@ -7214,420 +7832,6 @@
 					]
 				},
 				{
-					"name": "PFM budgets | 204 | Delete | budget - Deletes a budget.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Case 204\", function () {",
-									"    pm.expect(pm.response.code).to.be.oneOf([204]);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AccessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/budgets/:id",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"budgets",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "{{IdBudget}}",
-									"description": "(Required) The ID of the budget to request."
-								}
-							]
-						},
-						"description": "Deletes a budget and all its information."
-					},
-					"response": [
-						{
-							"name": "The budget has been deleted successfully.",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [
-									{
-										"description": "Added as a part of security scheme: bearer",
-										"key": "Authorization",
-										"value": "Bearer <token>"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/budgets/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"budgets",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "No Content",
-							"code": 204,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Something in the request was wrong.",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [
-									{
-										"description": "Added as a part of security scheme: bearer",
-										"key": "Authorization",
-										"value": "Bearer <token>"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/budgets/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"budgets",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "[\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n },\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n }\n]"
-						},
-						{
-							"name": "The budget ID you requested was not found.",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [
-									{
-										"description": "Added as a part of security scheme: bearer",
-										"key": "Authorization",
-										"value": "Bearer <token>"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/budgets/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"budgets",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "[\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n },\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n }\n]"
-						},
-						{
-							"name": "Something in the server was wrong.",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [
-									{
-										"description": "Added as a part of security scheme: bearer",
-										"key": "Authorization",
-										"value": "Bearer <token>"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/budgets/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"budgets",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Internal Server Error",
-							"code": 500,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						}
-					]
-				},
-				{
-					"name": "PFM transacctions | 204 | delete | transacctions - Deletes a transaction.",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Case 204 delete transaction create accros test\", function () {",
-									"    pm.expect(pm.response.code).to.be.oneOf([204]);",
-									"});",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AccessToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/transactions/:id",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"transactions",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "{{IdTransaction}}",
-									"description": "(Required) The ID of the transaction to request."
-								}
-							]
-						},
-						"description": "Deletes a transaction and all its information."
-					},
-					"response": [
-						{
-							"name": "The transaction has been deleted successfully.",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [
-									{
-										"description": "Added as a part of security scheme: bearer",
-										"key": "Authorization",
-										"value": "Bearer <token>"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/transactions/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"transactions",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "No Content",
-							"code": 204,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						},
-						{
-							"name": "Something in the request was wrong.",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [
-									{
-										"description": "Added as a part of security scheme: bearer",
-										"key": "Authorization",
-										"value": "Bearer <token>"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/transactions/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"transactions",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Bad Request",
-							"code": 400,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "[\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n },\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n }\n]"
-						},
-						{
-							"name": "The transaction ID you requested was not found.",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [
-									{
-										"description": "Added as a part of security scheme: bearer",
-										"key": "Authorization",
-										"value": "Bearer <token>"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/transactions/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"transactions",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Not Found",
-							"code": 404,
-							"_postman_previewlanguage": "json",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "application/json"
-								}
-							],
-							"cookie": [],
-							"body": "[\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n },\n {\n  \"title\": \"Error title\",\n  \"code\": \"error.unique.code\",\n  \"detail\": \"Something in your request was wrong or was not found\"\n }\n]"
-						},
-						{
-							"name": "Something in the server was wrong.",
-							"originalRequest": {
-								"method": "DELETE",
-								"header": [
-									{
-										"description": "Added as a part of security scheme: bearer",
-										"key": "Authorization",
-										"value": "Bearer <token>"
-									}
-								],
-								"url": {
-									"raw": "{{baseUrl}}/transactions/:id",
-									"host": [
-										"{{baseUrl}}"
-									],
-									"path": [
-										"transactions",
-										":id"
-									],
-									"variable": [
-										{
-											"key": "id"
-										}
-									]
-								}
-							},
-							"status": "Internal Server Error",
-							"code": 500,
-							"_postman_previewlanguage": "text",
-							"header": [
-								{
-									"key": "Content-Type",
-									"value": "text/plain"
-								}
-							],
-							"cookie": [],
-							"body": ""
-						}
-					]
-				},
-				{
 					"name": "PFM user | 204 | Delete | user - delete a user",
 					"event": [
 						{
@@ -7838,7 +8042,8 @@
 						}
 					]
 				}
-			]
+			],
+			"description": "Pruebas E2E para el servicio PFM sin OBI."
 		}
 	]
 }
